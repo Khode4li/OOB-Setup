@@ -9,7 +9,7 @@ xhr.open('GET', '<?php echo config\registry::get('HOST');?>', true);
 xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-            console.log(xhr.responseText);
+            console.log("ok");
         } else {
             console.error('Request failed with status:', xhr.status);
         }
