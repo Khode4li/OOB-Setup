@@ -13,7 +13,7 @@
 </html>
 <?php
 require_once 'vendor/autoload.php';
-require_once 'handler.php';
-$handler = new handler();
+require_once 'config/conf.php';
+$handler = new config\handler();
 $handler->notify();
 ?>

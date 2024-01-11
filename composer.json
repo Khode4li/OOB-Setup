@@ -11,7 +11,8 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "modules\\": "modules/"
+            "modules\\": "modules/",
+            "config\\": "config/"
         }
     }
 }

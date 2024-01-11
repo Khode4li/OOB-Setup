@@ -8,6 +8,8 @@ WORKDIR /var/www/html
 
 RUN composer install --no-interaction
 
+RUN rm README.md
+
 EXPOSE 80
 
 CMD ["apache2-foreground"]
