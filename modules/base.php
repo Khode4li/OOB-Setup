@@ -5,7 +5,7 @@ abstract class base
 {
     private static $instance = null;
 
-    private function __construct()
+    protected function __construct()
     {
     }
 

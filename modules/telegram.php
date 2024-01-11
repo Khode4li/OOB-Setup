@@ -2,10 +2,19 @@
 
 namespace modules;
 
+use config\registry;
+
 class telegram extends base
 {
-    private string $TOKEN   = '';
-    private string $CHAT_ID = '';
+    private string $TOKEN;
+    private string $CHAT_ID;
+    private function __construct()
+    {
+        $this->TOKEN = registry::get('TG_TOKEN');
+        $this->CHAT_ID = registry::get('TG_CHAT_ID');
+        parent::__construct();
+    }
+
     public function notify(): void
     {
         $q = $this->getQueryString();
