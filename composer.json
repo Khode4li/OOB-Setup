@@ -1,0 +1,17 @@
+{
+    "name": "khode4li/oob-setup",
+    "description": "oob setup for bug hunting :D",
+    "type": "project",
+    "authors": [
+        {
+            "name": "khode4li",
+            "email": "khode4li@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "modules\\": "modules/"
+        }
+    }
+}

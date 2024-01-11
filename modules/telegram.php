@@ -1,0 +1,38 @@
+<?php
+
+namespace modules;
+
+class telegram extends base
+{
+    private string $TOKEN   = '';
+    private string $CHAT_ID = '';
+    public function notify(): void
+    {
+        $q = $this->getQueryString();
+
+        $message = "〽️*Host*: `" . $this->getHostHeader() . "`\n\n〽️*IP\-Address*: ||" . $this->escapeChar('.',$this->getUserIpAddr()) . "||" . ((!is_null($this->getReferer())) ? "\n\n〽️*Referer*: `" . $this->getReferer() . "`" : '') . "\n\n〽️*User\-Agent*: `" . $this->escapeChar(['.','-'],$this->getUserAgent()) . "`\n
+〽️*Query String*:
+```QueryString
+GET: " . $q['GET'] . "
+" . ((!is_null($q['POST'])) ? "POST: ".$q['POST'] : "") . "
+```";
+
+        $this->sendMessage([
+            'chat_id' => $this->CHAT_ID,
+            'text' => $message,
+            'parse_mode' => 'markdownv2'
+        ]);
+    }
+    private function sendMessage($params)
+    {
+        $url = "https://api.telegram.org/bot" . $this->TOKEN . "/sendMessage";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $r = curl_exec($ch);
+        echo $r;
+        curl_close($ch);
+    }
+}
