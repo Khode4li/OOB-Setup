@@ -41,6 +41,8 @@ abstract class base
 
     protected function getUserIpAddr(): string
     {
+        if (isset($_SERVER['X-Forwarded-For']))
+            return $_SERVER['X-Forwarded-For'];
         return $_SERVER['REMOTE_ADDR'];
     }
 
