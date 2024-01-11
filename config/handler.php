@@ -2,13 +2,14 @@
 
 namespace config;
 
-use modules\telegram;
-
 class handler
 {
-    private array $modules = [
-        telegram::class
-    ];
+
+    private array $modules;
+    public function __construct()
+    {
+        $this->modules = registry::get('modules');
+    }
 
     public function notify()
     {
