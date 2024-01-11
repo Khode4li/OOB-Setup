@@ -31,8 +31,7 @@ GET: " . $q['GET'] . "
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $r = curl_exec($ch);
-        echo $r;
+        curl_exec($ch);
         curl_close($ch);
     }
 }

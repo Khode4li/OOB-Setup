@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  oob-setup:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6789:80"
