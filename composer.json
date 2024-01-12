@@ -8,7 +8,9 @@
             "email": "khode4li@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+      "ext-curl": "*"
+    },
     "autoload": {
         "psr-4": {
             "modules\\": "modules/",
