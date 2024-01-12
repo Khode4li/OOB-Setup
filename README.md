@@ -1,6 +1,6 @@
 # OOB-Setup
 
-Brief description of what the project does.
+This tool creates a basic web server with PHP. When accessed, it sends you a message through Telegram or Discord, depending on your configuration. It proves useful for testing Blind XSS or SSRF vulnerabilities.
 
 ## Features
 
