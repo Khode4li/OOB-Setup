@@ -41,4 +41,5 @@ The telegram module extends the base module to send notifications to a Telegram 
  - [x] write how to use
  - [x] add discord module
  - [ ] add markdown escape :D
+ - [ ] change apache setting to handle all urls and send the request to the discord
  - [x] write a better readme.md :)
