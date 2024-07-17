@@ -4,7 +4,7 @@ require_once 'config/conf.php';
 ?>
 
 var xhr = new XMLHttpRequest();
-xhr.open('GET', '<?php echo config\registry::get('HOST');?>', true);
+xhr.open('GET', '<?php echo '//'.config\registry::get('HOST');?>', true);
 
 xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {

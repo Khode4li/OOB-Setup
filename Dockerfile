@@ -10,6 +10,14 @@ RUN composer install --no-interaction
 
 RUN rm README.md
 
+RUN a2enmod rewrite
+
+RUN echo '<Directory /var/www/html/>\n\
+    AllowOverride All\n\
+    Require all granted\n\
+</Directory>' > /etc/apache2/conf-available/override.conf \
+    && a2enconf override
+
 EXPOSE 80
 
 CMD ["apache2-foreground"]

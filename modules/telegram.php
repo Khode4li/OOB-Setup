@@ -17,14 +17,16 @@ class telegram extends base
 
     public function notify(): void
     {
+        if($this->getHostHeader() !== registry::get('HOST'))
+            die();
         $q = $this->getQueryString();
 
-        $message = "〽️*Host*: `" . $this->getHostHeader() . "`\n\n〽️*IP\-Address*: ||" . $this->escapeChar('.',$this->getUserIpAddr()) . "||" . ((!is_null($this->getReferer())) ? "\n\n〽️*Referer*: `" . $this->getReferer() . "`" : '') . "\n\n〽️*User\-Agent*: `" . $this->escapeChar(['.','-'],$this->getUserAgent()) . "`\n
+        $message = "〽️*Host*: `" . $this->getHostHeader() . "`\n\n〽️*IP\-Address*: ||" . $this->escapeChar('.',$this->getUserIpAddr()) . "||" . ((!is_null($this->getReferer())) ? "\n\n〽️*Referer*: `" . mdEscape($this->getReferer()) . "`" : '') . "\n\n〽️*User\-Agent*: `" . mdEscape($this->getUserAgent()) . "`\n
 〽️*Query String*:
 ```QueryString
 GET: " . $q['GET'] . "
-" . ((!is_null($q['POST'])) ? "POST: ".$q['POST'] : "") . "
-```";
+" . ((!is_null($q['POST'])) ? "POST: ". mdEscape($q['POST']) : "") . "
+```" . "\n 〽️*headers* \n```\n" . mdEscape(getHeadersText()) . "```";
 
         $this->sendMessage([
             'chat_id' => $this->CHAT_ID,

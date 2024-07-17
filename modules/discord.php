@@ -16,6 +16,8 @@ class discord extends base
 
     public function notify(): void
     {
+        if($this->getHostHeader() !== registry::get('HOST'))
+            die();
         $q = $this->getQueryString();
         $params = [
             "embeds" => [
