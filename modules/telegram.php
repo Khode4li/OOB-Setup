@@ -27,12 +27,15 @@ class telegram extends base
 GET: " . $q['GET'] . "
 " . ((!is_null($q['POST'])) ? "POST: ". mdEscape($q['POST']) : "") . "
 ```" . "\n 〽️*headers* \n```\n" . mdEscape(getHeadersText()) . "```";
-
-        $this->sendMessage([
+        $sendMessageArray = [
             'chat_id' => $this->CHAT_ID,
             'text' => $message,
             'parse_mode' => 'markdownv2'
-        ]);
+        ];
+        if(registry::get('THREAD_ID') !== ''){
+            $sendMessageArray['message_thread_id'] = registry::get('THREAD_ID');
+        }
+        $this->sendMessage($sendMessageArray);
     }
     private function sendMessage($params)
     {
