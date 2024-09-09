@@ -38,13 +38,15 @@ function blockBots(){
         'Googlebot',
         'TelegramBot'
     ];
-    $referrer = $_SERVER['HTTP_REFERER'];
-    foreach ($UserAgents as $userAgent) {
-        // Check if the bot's name exists in the referrer header
-        if (stripos($referrer, $userAgent) !== false) {
-            // Block the bot by returning a 403 Forbidden status
-            header('HTTP/1.0 403 Forbidden');
-            exit("Access denied for bots");
+    if (isset($_SERVER['HTTP_USER_AGENT'])) {
+        $UA = $_SERVER['HTTP_USER_AGENT'];
+        foreach ($UserAgents as $userAgent) {
+            // Check if the bot's name exists in the referrer header
+            if (stripos($UA, $userAgent) !== false) {
+                // Block the bot by returning a 403 Forbidden status
+                header('HTTP/1.0 403 Forbidden');
+                exit("Access denied for bots");
+            }
         }
     }
 }
