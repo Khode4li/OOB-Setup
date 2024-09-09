@@ -32,3 +32,19 @@ function getHeadersText(){
     }
     return $text;
 }
+
+function blockBots(){
+    $UserAgents = [
+        'Googlebot',
+        'TelegramBot'
+    ];
+    $referrer = $_SERVER['HTTP_REFERER'];
+    foreach ($UserAgents as $userAgent) {
+        // Check if the bot's name exists in the referrer header
+        if (stripos($referrer, $userAgent) !== false) {
+            // Block the bot by returning a 403 Forbidden status
+            header('HTTP/1.0 403 Forbidden');
+            exit("Access denied for bots");
+        }
+    }
+}

@@ -1,3 +1,6 @@
+<?php
+blockBots();
+?>
 <!doctype html>
 <html lang="en">
 <head>
